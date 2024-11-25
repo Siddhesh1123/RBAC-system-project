@@ -22,6 +22,20 @@ exports.createUser = async (req, res) => {
   }
 };
 
+// Get All Users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().populate('role');
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'No users found.' });
+    }
+
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: `Failed to fetch users: ${err.message}` });
+  }
+};
+
 // Get User by ID
 exports.getUser = async (req, res) => {
   const { id } = req.params;
@@ -50,12 +64,11 @@ exports.updateUser = async (req, res) => {
       return res.status(400).json({ message: 'Role not found' });
     }
 
-    const updatedUser = await User.findByIdAndUpdate(id, {
-      username,
-      email,
-      password,
-      role,
-    }, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { username, email, password, role },
+      { new: true }
+    );
 
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });

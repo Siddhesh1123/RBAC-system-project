@@ -4,6 +4,7 @@ const {
   authenticate,
   authorizePermission,
 } = require('../middlewares/authMiddleware');
+const Permission = require('../models/Permission');
 const router = express.Router();
 
 // POST /api/permissions/add - Add permission (Admin only)
@@ -13,9 +14,14 @@ router.post('/add', authenticate, authorizePermission('permission:create'), addP
 router.get('/view', authenticate, authorizePermission('permission:read'), async (req, res) => {
   try {
     const permissions = await Permission.find();
+    if (!permissions.length) {
+      return res.status(404).json({ message: 'No permissions found' });
+    }
+
     res.status(200).json({ permissions });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error retrieving permissions:', error.message); // Log detailed error
+    res.status(500).json({ message: `Failed to fetch permissions: ${error.message}` });
   }
 });
 

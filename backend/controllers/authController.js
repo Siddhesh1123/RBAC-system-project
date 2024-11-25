@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Role = require('../models/Role');
+const mongoose = require('mongoose');
 
 // Create User (Signup)
 exports.createUser = async (req, res) => {
@@ -15,6 +16,8 @@ exports.createUser = async (req, res) => {
 
     // Check if the role exists
     const userRole = await Role.findById(role);
+    
+    console.log(userRole); 
     if (!userRole) {
       return res.status(400).json({ message: 'Role not found' });
     }
@@ -58,6 +61,7 @@ exports.createUser = async (req, res) => {
 };
 
 // User Login
+// User Login
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -68,8 +72,14 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Check if password matches
+    // Log stored password hash and input password
+    console.log('Stored password hash:', user.password);  // Log stored hash
+    console.log('Input password:', password);  // Log input password
+
+    // Check if the input password matches the stored hash
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    // If the password doesn't match
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
@@ -81,9 +91,10 @@ exports.loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
+    // Send response with JWT token and user info
     res.status(200).json({
       message: 'Login successful',
-      token: token,  // Send the JWT token back with the response
+      token: token,  // Send JWT token back with the response
       user: {
         id: user._id,
         username: user.username,
@@ -96,3 +107,4 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
