@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('/api/users', {
+      const response = await fetch('http://localhost:5000/api/users', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${auth.token}`,
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch('/api/roles', {
+      const response = await fetch('http://localhost:5000/api/roles', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${auth.token}`,
@@ -55,7 +55,7 @@ const Dashboard = () => {
 
   const fetchPermissions = async () => {
     try {
-      const response = await fetch('/api/permissions', {
+      const response = await fetch('http://localhost:5000/api/permissions', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${auth.token}`,
@@ -102,7 +102,7 @@ const Dashboard = () => {
               {users.map((user) => (
                 <tr key={user._id}>
                   <td className="border px-4 py-2">{user.username}</td>
-                  <td className="border px-4 py-2">{getRoleName(user.role)}</td>
+                  <td className="border px-4 py-2">{getRoleName(user.role )}</td>
                   <td className="border px-4 py-2 flex space-x-2">
                     {/* Admin can edit or delete */}
                     {auth.user.role === 'Admin' && (

@@ -57,34 +57,43 @@ const authorizeRole = (...roles) => {
 };
 
 // Middleware to check if the user has specific permissions
-const authorizePermission = (...permissions) => {
+const authorizePermission = (...requiredPermissions) => {
   return async (req, res, next) => {
     try {
-      // Fetch the user based on the id attached in the token
-      const user = await User.findById(req.user.id).populate('role');
+      // Fetch the user with role and permissions populated
+      const user = await User.findById(req.user.id).populate({
+        path: 'role',
+        populate: {
+          path: 'permissions',
+        },
+      });
 
-      // Check if the role and permissions exist
+      // Ensure role and permissions exist
       if (!user || !user.role || !user.role.permissions) {
         return res.status(404).json({ message: 'Role or permissions not found for user' });
       }
 
-      const userPermissions = user.role.permissions.map((perm) => perm.name);
-      console.log('User Permissions:', userPermissions); // Debugging log
+      const userPermissions = user.role.permissions.map((perm) => perm._id.toString());
+      // console.log('User Permissions:', userPermissions); // Debugging log
 
-      // Check if user has all required permissions
-      const missingPermissions = permissions.filter((perm) => !userPermissions.includes(perm));
+      // Check if all required permissions are present in the user's permissions
+      const missingPermissions = requiredPermissions.filter(
+        (perm) => !userPermissions.includes(perm.toString())
+      );
+
       if (missingPermissions.length > 0) {
         return res.status(403).json({
           message: `Access denied. Missing permissions: ${missingPermissions.join(', ')}`,
         });
       }
 
-      next();  // Proceed to the next middleware
+      next(); // Proceed to the next middleware
     } catch (err) {
       console.error('Error during permission authorization:', err.message); // Debugging log
       res.status(500).json({ message: `Failed to verify permissions: ${err.message}` });
     }
   };
 };
+
 
 module.exports = { authenticate, authorizeRole, authorizePermission };
