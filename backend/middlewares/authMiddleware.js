@@ -33,6 +33,10 @@ const authenticate = async (req, res, next) => {
 const authorizeRole = (...roles) => {
   return async (req, res, next) => {
     try {
+      if (!req.user.role) {
+        return res.status(400).json({ message: 'User role not available in the request' });
+      }
+
       // Fetch the user's role from the database
       const userRole = await Role.findById(req.user.role);
       if (!userRole) {
@@ -56,17 +60,15 @@ const authorizeRole = (...roles) => {
 const authorizePermission = (...permissions) => {
   return async (req, res, next) => {
     try {
-      // Fetch the user's role and populate permissions
-      const user = await User.findOne({ username: 'sheraadmin' }).populate('role');
-console.log(user.role.permissions);  // Ensure 'permission:create' is included
+      // Fetch the user based on the id attached in the token
+      const user = await User.findById(req.user.id).populate('role');
 
-      const userRole = await Role.findById(req.user.role).populate('permissions');
-      if (!userRole) {
-        return res.status(404).json({ message: 'Role not found for user' });
+      // Check if the role and permissions exist
+      if (!user || !user.role || !user.role.permissions) {
+        return res.status(404).json({ message: 'Role or permissions not found for user' });
       }
 
-      // Extract user permissions
-      const userPermissions = userRole.permissions.map((perm) => perm.name);
+      const userPermissions = user.role.permissions.map((perm) => perm.name);
       console.log('User Permissions:', userPermissions); // Debugging log
 
       // Check if user has all required permissions
