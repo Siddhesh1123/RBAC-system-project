@@ -32,27 +32,60 @@ This is a React-based dashboard application that allows you to manage users. It 
   - Backend authenticated routes
   - User , Permission , Role
 
-## Installation
 
-To get started with this project locally, follow these steps:
+## Installation and Setup
 
-- cd frontend
-- npm install
-- npm run dev
-- cd backend
-- npm install
-- npm run dev
+### Clone the Repository
 
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+## Backend Setup
+Navigate to the backend directory:
 
-### Prerequisites
+```bash
+cd backend
+```
 
-Ensure you have the following tools installed:
-- Node.js (version >= 14.x.x)
-- npm or yarn (Package managers)
+Install dependencies:
+```bash
+npm install
+```
+Set up the .env file:
 
-### Steps to run the project:
+Use the provided .env.example file as a template.
+Rename .env.example to .env.
+Fill in the required environment variables, such as:
+```bash
+DB_USERNAME=
+DB_PASSWORD=
+DB_URL=
+PORT=5000
+JWT_SECRET=
+```
+Start the backend server:
 
-1. Clone the repository:
+```bash
+npm start
+```
+The server should now be running at http://localhost:PORT.
 
-   ```bash
-   git clone https://github.com/RBAC-system-project/dashboard-project.git
+Frontend Setup
+Navigate to the frontend directory:
+
+```bash
+cd ../frontend
+```
+Install dependencies:
+
+```bash
+npm install
+```
+Start the frontend development server:
+
+```bash
+npm start
+```
+The application should now be running at http://localhost:3000.
+
