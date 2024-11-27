@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 :root {
-  --tw-prose-body: theme(colors.gray.800);
+  --tw-prose-body: theme(colors.gray.500);
 }

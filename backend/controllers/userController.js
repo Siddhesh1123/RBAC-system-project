@@ -4,18 +4,20 @@ const Role = require('../models/Role');
 // Create User
 exports.createUser = async (req, res) => {
   const { username, email, password, role } = req.body;
-
+  console.log("0")
   try {
     // Check if the role exists
     const userRole = await Role.findById(role);
     if (!userRole) {
       return res.status(400).json({ message: 'Role not found' });
     }
-
+    console.log("1")
     // Create new user
     const newUser = new User({ username, email, password, role });
+    console.log("2")
+    console.log(newUser)
     await newUser.save();
-
+    console.log("3")
     res.status(201).json({ message: 'User created successfully', user: newUser });
   } catch (err) {
     res.status(500).json({ message: err.message });

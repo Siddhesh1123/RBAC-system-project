@@ -13,7 +13,11 @@ connectDB();
 const app = express();
 
 // Enable CORS for all origins (adjust for production)
-app.use(cors()); // You can customize it further if needed
+app.use(cors(
+  {
+    origin: 'http://localhost:5701',
+  }
+)); // You can customize it further if needed
 
 // Middleware to parse JSON
 app.use(express.json());

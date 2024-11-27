@@ -12,17 +12,17 @@ export const AppRoutes = () => {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/home" /> : <Loginuser />} />
-        <Route path="/signup" element={isAuthenticated ? <Navigate to="/home" /> : <Signup />} />
+        <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Loginuser />} />
+        <Route path="/signup" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Signup />} />
 
         {/* Protected Route */}
         <Route
-          path="/home"
-          element={isAuthenticated ? <Dashboard/> : <Navigate to="/login" />}
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard/> : <Navigate to="/" />}
         />
 
         {/* Fallback Route */}
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
         </Router>
   )

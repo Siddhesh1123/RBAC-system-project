@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (auth) {
       console.log('Auth Token:', auth.token);
+      console.log("auth structure", auth) 
     }
   }, [auth]); // Re-run when auth state changes
 

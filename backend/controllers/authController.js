@@ -16,8 +16,6 @@ exports.createUser = async (req, res) => {
 
     // Check if the role exists
     const userRole = await Role.findById(role);
-    
-    console.log(userRole); 
     if (!userRole) {
       return res.status(400).json({ message: 'Role not found' });
     }
@@ -37,21 +35,21 @@ exports.createUser = async (req, res) => {
     // Save the user to the database
     await newUser.save();
 
-    // Create JWT token for the new user
+    // Create JWT token with the role name
     const token = jwt.sign(
-      { userId: newUser._id, username: newUser.username, role: userRole.name },
-      process.env.JWT_SECRET, 
+      { userId: newUser._id, username: newUser.username, role: userRole.name }, // Use userRole.name
+      process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
     res.status(201).json({
       message: 'User created successfully',
-      token: token,  // Send JWT token back with the response
+      token: token, // Send JWT token back with the response
       user: {
         id: newUser._id,
         username: newUser.username,
         email: newUser.email,
-        role: userRole.name,
+        role: userRole.name, // Include role name in the response
         status: newUser.status,
       },
     });
@@ -59,6 +57,7 @@ exports.createUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 // User Login
 // User Login
@@ -107,4 +106,3 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
