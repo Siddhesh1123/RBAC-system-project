@@ -36,6 +36,14 @@ This is a React-based dashboard application that allows you to manage users. It 
 
 To get started with this project locally, follow these steps:
 
+- cd frontend
+- npm install
+- npm run dev
+- cd backend
+- npm install
+- npm run dev
+
+
 ### Prerequisites
 
 Ensure you have the following tools installed:
