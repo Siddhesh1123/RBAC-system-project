@@ -21,10 +21,16 @@ This is a React-based dashboard application that allows you to manage users. It 
 - **Backend**:
   - API for CRUD operations
   - Express.js
+  - Postman
+  - MongoDB
+  - Node.js
+  - MondoDB compass
 - **Authentication**:
-  - Auth Context (React Context API)
+  - Middleware authentication
+  - Authcontroller
 - **Routing**:
-  - React Router
+  - Backend authenticated routes
+  - User , Permission , Role
 
 ## Installation
 
