@@ -1,6 +1,6 @@
 # RBAC Dashboard Project
 
-This is a React-based dashboard application that allows you to manage users. It provides functionalities to add, edit, and delete users. The project is built using React.js, Tailwind CSS, and makes use of an API service for CRUD operations.
+This is a React-based dashboard application that allows you to manage users. It provides functionalities to add, edit, and delete users with manage permission and roles . The project is built using React.js, Tailwind CSS, Daisy UI , Lottie animations and makes use of an API service for CRUD operations using backend   - API for CRUD operations using Express.js ,Postman ,MongoDB ,Node.js ,MondoDB compass.
 
 ## Features
 
