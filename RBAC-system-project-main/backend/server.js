@@ -15,7 +15,6 @@ const app = express();
 // Enable CORS for all origins (adjust for production)
 const corsOptions = {
   origin: 'https://rbac-system-project-main.vercel.app/', // Match the exact client origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // If cookies or HTTP authentication are required
 };
 
