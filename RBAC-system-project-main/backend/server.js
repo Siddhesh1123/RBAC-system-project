@@ -12,14 +12,8 @@ connectDB();
 // Initialize Express app
 const app = express();
 
-// Enable CORS for all origins (adjust for production)
-const corsOptions = {
-  origin: 'https://rbac-system-project-main.vercel.app/', // Match the exact client origin
-  credentials: true, // If cookies or HTTP authentication are required
-};
+app.options('*', cors());// Handle preflight
 
-app.options('*', cors(corsOptions)); // Handle preflight
-// You can customize it further if needed
 
 // Middleware to parse JSON
 app.use(express.json());
