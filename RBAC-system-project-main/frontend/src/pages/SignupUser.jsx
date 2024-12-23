@@ -48,7 +48,7 @@ const SignupUser = () => {
     <div className="hero bg-white min-h-screen">
       <div className="hero-content flex lg:flex-row items-stretch gap-0">
         {/* Form Section */}
-        <div className="card bg-slate-200 w-full max-w-sm shrink-0 shadow-2xl rounded-r-none ">
+        <div className="card bg-slate-200 w-full max-w-sm shrink-0 shadow-2xl rounded-r-2xl lg:rounded-r-none"> 
           <form className="card-body" onSubmit={handleSubmit}>
             <h1 className="text-5xl font-bold text-gray-700">Sign Up</h1>
             {error && <p className="text-red-500">{error}</p>}

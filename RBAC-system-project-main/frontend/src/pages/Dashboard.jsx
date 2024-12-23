@@ -38,7 +38,7 @@ const Dashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/users", {
+      const response = await fetch("https://rbac-system-project-main.onrender.com/api/users", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -86,7 +86,7 @@ const Dashboard = () => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         const response = await fetch(
-          ` http://localhost:5000/api/users/${userId}`,
+          ` https://rbac-system-project-main.onrender.com/api/users/${userId}`,
           {
             method: "DELETE",
             headers: { Authorization: `Bearer ${auth.token}` },
@@ -108,8 +108,8 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const url = isEditing
-        ? `http://localhost:5000/api/users/${currentUserId}`
-        : "http://localhost:5000/api/users";
+        ? `https://rbac-system-project-main.onrender.com/api/users/${currentUserId}`
+        : "https://rbac-system-project-main.onrender.com/api/users";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {
@@ -181,7 +181,7 @@ const Dashboard = () => {
                 />
               </div>
               {isMenuVisible && (
-                <div className="absolute right-0 mt-2 w-max bg-slate-100 shadow-md rounded-lg">
+                <div className="absolute right-0 mt-2 w-max px-6 py-3 bg-slate-100 shadow-md rounded-lg">
                   <div className="p-2 text-gray-800">
                     <p className="font-semibold">
                       Username : {auth.user.username}
@@ -318,7 +318,7 @@ const Dashboard = () => {
                         name="username"
                         value={formData.username}
                         onChange={handleFormChange}
-                        className="w-full bg-slate-800 px-3 py-2 border rounded"
+                        className="w-full bg-gray-300 text-black px-3 py-2 border rounded"
                         required
                       />
                     </div>
@@ -329,7 +329,7 @@ const Dashboard = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleFormChange}
-                        className="w-full bg-slate-800 px-3 py-2 border rounded"
+                        className="w-full bg-gray-300 text-black px-3 py-2 border rounded"
                         required
                       />
                     </div>
@@ -340,7 +340,7 @@ const Dashboard = () => {
                         name="password"
                         value={formData.password}
                         onChange={handleFormChange}
-                        className="w-full bg-slate-800 px-3 py-2 border rounded"
+                        className="w-full bg-gray-300 text-black px-3 py-2 border rounded"
                         required
                       />
                     </div>
@@ -350,7 +350,7 @@ const Dashboard = () => {
                         name="role"
                         value={formData.role}
                         onChange={handleFormChange}
-                        className="w-full bg-slate-800 px-3 py-2 border rounded"
+                        className="w-full bg-gray-300 text-black px-3 py-2 border rounded"
                         required
                       >
                         <option value="">Select Role</option>

@@ -34,7 +34,7 @@ const LoginUser = () => {
   return (
     <div className="hero bg-white min-h-screen">
       <div className="hero-content flex lg:flex-row-reverse items-stretch gap-0 h-auto">
-        <div className="card bg-slate-200 w-full max-w-sm shrink-0 shadow-2xl  rounded-r-lg">
+        <div className="card bg-slate-200 w-full max-w-sm shrink-0 shadow-2xl  lg:rounded-l-none rounded-l-2xl">
           <form className="card-body" onSubmit={handleSubmit}>
             <h1 className="text-5xl font-bold text-gray-700">Login</h1>
             {error && <p className="text-red-500">{error}</p>}
@@ -84,7 +84,7 @@ const LoginUser = () => {
         </div>
         
         <div className="hidden lg:block flex-1">
-          <img src={Rocket} alt="Rocket" className="h-full w-full object-cover rounded-l-lg" />
+          <img src={Rocket} alt="Rocket" className="h-full w-full object-cover rounded-l-2xl" />
         </div>
       </div>
     </div>
