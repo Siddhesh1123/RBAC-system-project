@@ -14,7 +14,7 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-  origin: 'https://rbac-system-project-main.vercel.app' || "https://rbac-system-project-main-nujqsam4o-siddheshs-projects.vercel.app", // Your frontend
+  origin: 'https://rbac-system-project-main.vercel.app/' || "https://rbac-system-project-main-nujqsam4o-siddheshs-projects.vercel.app/", // Your frontend
   credentials: true, // Allow cookies if needed
 }));
 
