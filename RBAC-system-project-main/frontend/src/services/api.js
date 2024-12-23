@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://rbac-system-project-main.onrender.com/api'; // Adjust as per your backend
+const API_BASE_URL = 'https://rbac-system-project.onrender.com/api'; // Adjust as per your backend
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

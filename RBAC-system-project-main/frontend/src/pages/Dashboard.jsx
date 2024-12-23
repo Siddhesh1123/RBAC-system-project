@@ -38,7 +38,7 @@ const Dashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://rbac-system-project-main.onrender.com/api/users", {
+      const response = await fetch("https://rbac-system-project.onrender.com/api/users", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${auth.token}`,
@@ -86,7 +86,7 @@ const Dashboard = () => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         const response = await fetch(
-          ` https://rbac-system-project-main.onrender.com/api/users/${userId}`,
+          ` https://rbac-system-project.onrender.com/api/users/${userId}`,
           {
             method: "DELETE",
             headers: { Authorization: `Bearer ${auth.token}` },
@@ -108,8 +108,8 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const url = isEditing
-        ? `https://rbac-system-project-main.onrender.com/api/users/${currentUserId}`
-        : "https://rbac-system-project-main.onrender.com/api/users";
+        ? `https://rbac-system-project.onrender.com/api/users/${currentUserId}`
+        : "https://rbac-system-project.onrender.com/api/users";
       const method = isEditing ? "PUT" : "POST";
 
       const response = await fetch(url, {
