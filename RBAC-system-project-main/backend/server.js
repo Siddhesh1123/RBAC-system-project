@@ -13,22 +13,10 @@ connectDB();
 const app = express();
 
 // Configure CORS
-const allowedOrigins = [
-  'https://rbac-system-project-main.vercel.app', // Your deployed frontend
-  'http://localhost:3000', // Local development (optional)
-];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow the request
-      } else {
-        callback(new Error('Not allowed by CORS')); // Block the request
-      }
-    },
-    credentials: true, // Include cookies if needed
-  })
-);
+app.use(cors({
+  origin: 'https://rbac-system-project-main.vercel.app', // Your frontend
+  credentials: true, // Allow cookies if needed
+}));
 
 // Middleware to parse JSON
 app.use(express.json());
