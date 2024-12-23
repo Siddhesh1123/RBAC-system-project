@@ -15,7 +15,7 @@ const app = express();
 // Enable CORS for all origins (adjust for production)
 app.use(cors(
   {
-    origin: 'https://rbac-system-project-main-siddheshs-projects.vercel.app/',
+    origin: 'https://rbac-system-project-main.vercel.app/',
   }
 )); // You can customize it further if needed
 
