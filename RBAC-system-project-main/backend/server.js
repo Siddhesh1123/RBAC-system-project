@@ -13,20 +13,9 @@ connectDB();
 const app = express();
 
 // Configure CORS
-const allowedOrigins = [
-  'https://rbac-system-project.vercel.app',
-  'https://rbac-system-project-git-main-siddheshs-projects.vercel.app/', // Add your staging URL here
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow cookies if needed
+  origin: '*', // Allow all origins
+  credentials: true, // Include cookies if needed
 }));
 // Middleware to parse JSON
 app.use(express.json());
