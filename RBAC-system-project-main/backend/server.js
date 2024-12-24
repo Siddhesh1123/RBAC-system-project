@@ -15,7 +15,7 @@ const app = express();
 // Configure CORS
 const allowedOrigins = [
   'https://rbac-system-project.vercel.app',
-  'https://your-staging-environment.com', // Add your staging URL here
+  'https://rbac-system-project-git-main-siddheshs-projects.vercel.app/', // Add your staging URL here
 ];
 
 app.use(cors({
