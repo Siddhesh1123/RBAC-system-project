@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import api from '../services/api'; // Ensure you import api here
 import Rocket from '../assests/Rocket.jpg';
-
+import Lottie from 'lottie-react';
+import background from '../assests/background.json';
 
 const LoginUser = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
